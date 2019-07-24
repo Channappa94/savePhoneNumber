@@ -13,40 +13,38 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var enterName: UITextField!
     @IBOutlet weak var enterNumber: UITextField!
     @IBOutlet weak var buttonTapped: UIButton!
+    @IBOutlet weak var alertUser: UILabel!
     
-    var abc: String = String()
-    var abd: String = String()
+    var abc: String = " "
+    var abd: String = " "
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.enterNumber.delegate = self
         self.enterNumber.delegate = self
-        print(UserDefaults.standard.dictionaryRepresentation())
-        abc = UserDefaults.standard.object(forKey: "PlayOneName") as! String
-        abd = UserDefaults.standard.object(forKey: "numberSave") as! String
        
+        abc = UserDefaults.standard.value(forKey: "PlayOneName") as! String
+        abd = UserDefaults.standard.value(forKey: "numberSave") as! String
 
     }
-
-    
     @IBAction func buttonOn(_ sender: Any) {
         //Below line will help you store the data inside  those key name
-        var name = enterName.text
-        var abs = UserDefaults.standard.set(enterName.text, forKey: "PlayOneName")
+        let name = enterName.text
+        let number = enterNumber.text
         UserDefaults.standard.set(enterNumber.text, forKey: "numberSave")
-        print(abc)
-        print(abd)
-        print(name!)
-        if abc == name{
-            print("yes")
+        UserDefaults.standard.set(enterName.text, forKey: "PlayOneName")
+        if ((abc == name) && (abd != number)){
+            buttonTapped.setTitle("Updated", for: .normal)
+            alertUser.text = "Number is updated"
+        }else if((abc == name) && (abd == number)){
+             buttonTapped.setTitle("save", for: .normal)
+            alertUser.text = "Name already exists"
         }
-   
-        
+    else{
+            buttonTapped.setTitle("save", for: .normal)
+            alertUser.text = "Number is saved"
+        }
     }
-
-
-    
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
