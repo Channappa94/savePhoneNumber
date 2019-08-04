@@ -22,10 +22,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.enterNumber.delegate = self
         self.enterNumber.delegate = self
-       
+        
         abc = UserDefaults.standard.value(forKey: "PlayOneName") as! String
         abd = UserDefaults.standard.value(forKey: "numberSave") as! String
-
+        
     }
     @IBAction func buttonOn(_ sender: Any) {
         //Below line will help you store the data inside  those key name
@@ -37,20 +37,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
             buttonTapped.setTitle("Updated", for: .normal)
             alertUser.text = "Number is updated"
         }else if((abc == name) && (abd == number)){
-             buttonTapped.setTitle("save", for: .normal)
+            buttonTapped.setTitle("save", for: .normal)
             alertUser.text = "Name already exists"
         }
-    else{
+        else{
             buttonTapped.setTitle("save", for: .normal)
             alertUser.text = "Number is saved"
         }
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-
     
 }
 
